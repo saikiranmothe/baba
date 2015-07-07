@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @upload.name %>
+</p>
+<p>
+  <b>Photo:</b>
+  <%= image_tag @upload.photo, :size => "150x150" %>
+</p>
+
+
+
+<p>
+  <b>Document:</b>
+  <p><%= @upload.document_file_name %></p>
+  <a href="<%= @upload.document %>" target="_blank"><img src="http://aglou.caminosurf.com/images/icons/pdf_icon_x64.png"></a>
+</p>
+
+<p>
+  <b>Video:</b>
+  <p><%= @upload.video_file_name %></p>
+             <!--  <%= video_tag @upload.video, controls: true, type: "video/mp4" %>
+
+              <iframe width="490" height="275" src="<%= video_path @upload.video %>" frameborder="0" allowfullscreen autoplay="true">
+            </iframe> -->
+<video width="320" height="240" controls>
+  <source src='<%= @upload.video %>' />
+</video>
+
+</p>
+
+
+<p>
+  <b>Audio:</b>
+  <p><%= @upload.audio_file_name %></p>
+  <audio src="<%= @upload.audio %>" preload="none" />
+</p>
+
+
+<%= link_to 'Edit', edit_upload_path(@upload) %> |
+<%= link_to 'Back', uploads_path %>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

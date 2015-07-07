@@ -1,0 +1,239 @@
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-user-md"></i> Profile</h3>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+           <li><i class="fa fa-user-md"></i>Profile</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <!-- profile-widget -->
+      <div class="col-lg-12">
+        <div class="profile-widget profile-widget-info">
+          <div class="panel-body">
+            <div class="col-lg-2 col-sm-2">
+                 <div class="follow-ava">
+                  <img src="/assets/avatar-mini4.jpg" alt="">
+                </div>
+             </div>
+                
+            <div class="col-lg-4 col-sm-4 follow-info">
+              <p>Hello I’m <%= current_user.email %> , a leading expert in interactive and creative design.</p>
+                 
+            </div>
+            
+            <div class="col-lg-2 col-sm-6 follow-info weather-category">
+              <ul>
+                <li class="active">
+                  <i class="fa fa-comments fa-2x"> </i><br>
+                            
+                            Chat Support
+                                              </li>
+                           
+                                          </ul>
+                                </div>
+                  <div class="col-lg-2 col-sm-6 follow-info weather-category">
+                                          <ul>
+                                              <li class="active">
+                                                  
+                                                  <i class="fa fa-bell fa-2x"> </i><br>
+                            
+                            Notifications
+                                              </li>
+                           
+                                          </ul>
+                                </div>
+                  <div class="col-lg-2 col-sm-6 follow-info weather-category">
+                                          <ul>
+                                              <li class="active">
+                                                  
+                                                  <i class="fa fa-tachometer fa-2x"> </i><br>
+                            
+                            Dashboard
+                                              </li>
+                           
+                                          </ul>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                  </div>
+                  <!-- page start-->
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <section class="panel">
+                              <header class="panel-heading tab-bg-info">
+                                  <ul class="nav nav-tabs">
+                                      <li class="active">
+                                          <a data-toggle="tab" href="#recent-activity">
+                                              <i class="icon-home"></i>
+                                             Bio Graph
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a data-toggle="tab" href="#profile">
+                                              <i class="icon-user"></i>
+                                              Edit Profile
+                                          </a>
+                                      </li>
+                                       
+                                  </ul>
+                              </header>
+                              <div class="panel-body">
+                                  <div class="tab-content">
+                                      <div id="recent-activity" class="tab-pane active">
+
+                                      <section class="panel">
+                                    
+                                          <div class="panel-body bio-graph-info">
+                                              <h1>Bio Graph</h1>
+                                              <div class="row">
+                                             
+                                                  <div class="bio-row">
+                                                      <p><span>Email </span>:<%= current_user.email %></p>
+                                                  </div>
+
+                                                                                               
+                                                 
+                                              </div>
+                                          </div>
+                                        </section>
+                                          <section>
+                                              <div class="row">                                              
+                                              </div>
+                                          </section>
+                                        
+                                      </div>
+                                      <!-- profile -->
+                                      <div id="profile" class="tab-pane">
+                                        <h1> Profile Info</h1>
+                                        <hr>
+
+                                                <%= form_for(resource, as: resource_name, :class => "form-horizontal" ,url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                                                  <%= devise_error_messages! %>
+
+
+                                                    <%= f.label :email , :class => "col-lg-1 control-label"%> 
+                                                    <div class="col-lg-5">
+                                                      <%= f.email_field :email, autofocus: true , :class=>"form-control" , :id=>"email"%>
+                                                    </div>
+                                                 
+                                                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                                                      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                                                    <% end %>
+
+                                                 
+                                                    <%= f.label :password  , :class => "col-lg-1 control-label"%>  
+                                                    <div class="col-lg-5">
+                                                      <%= f.password_field :password, autocomplete: "off" , :class=>"form-control" %><i>(leave blank if you don't want to change it)</i>
+                                                    </div>
+                                                  
+
+                                                 
+                                                    <%= f.label :password_confirmation , :class => "col-lg-1 control-label"%>
+                                                    <div class="col-lg-5">
+                                                      <%= f.password_field :password_confirmation, autocomplete: "off" , :class=>"form-control"%>
+                                                    </div>
+                                                  
+
+                                                    <%= f.label :current_password, :class => "col-lg-1 control-label" %> 
+                                                    <div class="col-lg-5">  
+                                                      <%= f.password_field :current_password, autocomplete: "off" , :class => "form-control" %><i>(we need your current password to confirm your changes)</i>
+                                                    </div>
+                                                  
+                                                    <div class="form-group">
+                                                      <br><br><br><br> 
+                                                      <%= f.submit "Update" , :class=>"btn btn-primary"%>
+                                                    </div>
+                                                  <% end %>
+
+                                                  <div class="col-lg-12">
+
+                                                    <h3>Cancel my account</h3>
+
+                                                    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete ,:class => "btn btn-danger" %></p>
+
+     
+                                                  </div>
+                                                  
+                                      </div>
+                                      <!-- edit-profile -->
+                                      <div id="edit-profile" class="tab-pane">
+                                        <section class="panel">                                          
+                                              <div class="panel-body bio-graph-info">
+                                                  <h1> Profile Info</h1>
+                                                  <form class="form-horizontal" role="form">                                                  
+                                                      <div class="form-group">
+                                                          <label class="col-lg-2 control-label">First Name</label>
+                                                          <div class="col-lg-6">
+                                                              <input type="text" class="form-control" id="f-name" placeholder=" ">
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-lg-2 control-label">Last Name</label>
+                                                          <div class="col-lg-6">
+                                                              <input type="text" class="form-control" id="l-name" placeholder=" ">
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-lg-2 control-label">About Me</label>
+                                                          <div class="col-lg-10">
+                                                              <textarea name="" id="" class="form-control" cols="30" rows="5"></textarea>
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-lg-2 control-label">Country</label>
+                                                          <div class="col-lg-6">
+                                                              <input type="text" class="form-control" id="c-name" placeholder=" ">
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-lg-2 control-label">Birthday</label>
+                                                          <div class="col-lg-6">
+                                                              <input type="text" class="form-control" id="b-day" placeholder=" ">
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-lg-2 control-label">Occupation</label>
+                                                          <div class="col-lg-6">
+                                                              <input type="text" class="form-control" id="occupation" placeholder=" ">
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-lg-2 control-label">Email</label>
+                                                          <div class="col-lg-6">
+                                                              <input type="text" class="form-control" id="email" placeholder=" ">
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-lg-2 control-label">Mobile</label>
+                                                          <div class="col-lg-6">
+                                                              <input type="text" class="form-control" id="mobile" placeholder=" ">
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-lg-2 control-label">Website URL</label>
+                                                          <div class="col-lg-6">
+                                                              <input type="text" class="form-control" id="url" placeholder="http://www.demowebsite.com ">
+                                                          </div>
+                                                      </div>
+
+                                                      <div class="form-group">
+                                                          <div class="col-lg-offset-2 col-lg-10">
+                                                              <button type="submit" class="btn btn-primary">Save</button>
+                                                              <button type="button" class="btn btn-danger">Cancel</button>
+                                                          </div>
+                                                      </div>
+                                                  </form>
+                                              </div>
+                                          </section>
+                                      </div>
+                                  </div>
+                              </div>
+                          </section>
+                     </div>
+                  </div>
+
+              <!-- page end-->
